@@ -7,7 +7,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { clearCart, deleteFromCart } from "../../redux/cartSlice";
 import { toast } from "react-toastify";
 import { addDoc, collection } from "firebase/firestore";
-import { fireDB } from "../../firebase/firebaseConfig";
+import { fireDB } from "../../firebase/FirebaseConfig";
 
 function Cart() {
   const context = useContext(myContext);
