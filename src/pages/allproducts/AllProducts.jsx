@@ -18,7 +18,7 @@ function Allproducts() {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart);
   const currentUser = JSON.parse(localStorage.getItem("user"));
-  const navigate = useNavigate(0);
+  const navigate = useNavigate();
 
   const addCart = (product) => {
     dispatch(addToCart(product));
@@ -75,7 +75,7 @@ function Allproducts() {
                     className="p-4 drop-shadow-lg"
                     onClick={() => {
                       if (currentUser) {
-                        navigate(`/productinfo/${eachItem.id}`);
+                        navigate(`/productinfo/${item.id}`);
                       } else {
                         handleLoginRedirect();
                       }
