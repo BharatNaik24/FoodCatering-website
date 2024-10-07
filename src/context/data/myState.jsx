@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import MyContext from "./myContext";
-import { fireDB } from "../../firebase/firebaseConfig";
+
 import { toast } from "react-toastify";
 import {
   addDoc,
   collection,
   deleteDoc,
   doc,
-  getDoc,
   getDocs,
   onSnapshot,
   orderBy,
@@ -16,6 +15,7 @@ import {
   Timestamp,
 } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import { fireDB } from "../../firebase/FirebaseConfig";
 
 const MyState = (props) => {
   // Determine initial mode based on the time of the day
