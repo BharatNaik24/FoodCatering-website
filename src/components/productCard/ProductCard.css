@@ -1,0 +1,5 @@
+.btnnnnn:disabled {
+  filter: blur(0.8px); /* Apply blur effect */
+  cursor: not-allowed; /* Change cursor to indicate the button is disabled */
+  opacity: 0.6; /* Optionally reduce opacity */
+}

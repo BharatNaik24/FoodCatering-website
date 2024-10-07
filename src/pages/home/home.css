@@ -1,0 +1,9 @@
+.flexPlay {
+    display: flex;
+}
+
+@media screen and (max-width:768px) {
+    .flexPlay {
+        display: block;
+    }
+}

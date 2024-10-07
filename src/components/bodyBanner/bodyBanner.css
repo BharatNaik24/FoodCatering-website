@@ -1,0 +1,9 @@
+.carousel-video {
+  height: 500px; /* Set the desired height */
+  object-fit: cover; /* Maintains the aspect ratio */
+}
+
+.carousel-image {
+  max-height: 500px;
+  object-fit: fill; /* This maintains the aspect ratio and covers the container */
+}
