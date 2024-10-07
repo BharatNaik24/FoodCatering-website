@@ -18,6 +18,7 @@ function Allproducts() {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart);
   const currentUser = JSON.parse(localStorage.getItem("user"));
+  const navigate = useNavigate(0);
 
   const addCart = (product) => {
     dispatch(addToCart(product));
@@ -41,6 +42,10 @@ function Allproducts() {
   useEffect(() => {
     window.scroll(0, 0);
   }, []);
+
+  const handleLoginRedirect = () => {
+    navigate("/login");
+  };
 
   return (
     <Layout>
@@ -68,7 +73,13 @@ function Allproducts() {
                   <div
                     key={item.id}
                     className="p-4 drop-shadow-lg"
-                    onClick={() => navigater(`/productinfo/${item.id}`)}
+                    onClick={() => {
+                      if (currentUser) {
+                        navigate(`/productinfo/${eachItem.id}`);
+                      } else {
+                        handleLoginRedirect();
+                      }
+                    }}
                   >
                     <div
                       className={`h-full flex flex-col justify-between border-2 hover:shadow-gray-100 hover:shadow-2xl transition-shadow duration-300 ease-in-out border-gray-200 border-opacity-60 rounded-2xl overflow-hidden ${
