@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 const CartItem = ({ items }) => {
   const context = useContext(MyContext);
   const { mode } = context;
-  const { id, title, price, quantity, description, imageUrl } = items;
+  const { id, title, quantity, description, imageUrl } = items;
   const [expandItem, setExpandItem] = useState(null);
   const dispatch = useDispatch();
 
