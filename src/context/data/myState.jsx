@@ -149,38 +149,6 @@ const MyState = (props) => {
     }
   };
 
-  // const deleteOrder = async (orderId) => {
-  //   if (!orderId) {
-  //     console.error("Order ID is undefined or invalid:", orderId);
-  //     return;
-  //   }
-
-  //   try {
-  //     const orderRef = doc(fireDB, "orders", orderId);
-  //     console.log("Attempting to delete order with ID:", orderId); // Debugging log
-  //     console.log("Firestore Document Reference:", orderRef); // Log the reference
-
-  //     // Check if document exists before attempting to delete
-  //     const orderSnapshot = await getDoc(orderRef);
-  //     if (orderSnapshot.exists()) {
-  //       console.log("Order found:", orderSnapshot.data()); // Log the existing order data
-  //       await deleteDoc(orderRef); // Delete from Firestore
-  //       toast.success("Order deleted successfully");
-
-  //       // Remove the deleted order from local state
-  //       setOrders((prevOrders) =>
-  //         prevOrders.filter((order) => order.id !== orderId)
-  //       );
-  //     } else {
-  //       console.log("Order not found in Firestore with ID:", orderId);
-  //       toast.error("Order not found");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error deleting order:", error);
-  //     toast.error("Error deleting order");
-  //   }
-  // };
-
   const deleteOrder = async (orderId) => {
     setLoading(true);
     try {

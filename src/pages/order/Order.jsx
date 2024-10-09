@@ -5,13 +5,18 @@ import Loader from "../../components/loader/Loader";
 import { FaLink } from "react-icons/fa";
 
 import { MdDeleteOutline } from "react-icons/md";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function Order() {
   const userid = JSON.parse(localStorage.getItem("user")).user.uid;
   const context = useContext(myContext);
   const { mode, loading, orders, deleteOrder } = context; // Make sure setOrders is included
 
-  const userOrders = orders?.filter((order) => order.userId === userid) || [];
+  const cartvalue = useSelector((state) => state.cart);
+
+  const userOrders =
+    orders?.filter((order) => order.userId === userid).reverse() || [];
   console.log("User Orders:", userOrders);
 
   // State to keep track of the currently expanded item
@@ -26,6 +31,8 @@ function Order() {
     deleteOrder(orderId);
   };
 
+  const navigatee = useNavigate();
+
   return (
     <Layout>
       {loading && <Loader />}
@@ -34,7 +41,7 @@ function Order() {
         <h2 className="text-center text-2xl text-red-500">No Orders</h2>
       ) : (
         <div
-          className={`h-screen-auto p-10 ${
+          className={`h-screen-auto p-10 shadow-lg ${
             mode === "dark"
               ? "bg-gray-800 text-white"
               : "bg-gray-100 text-black"
@@ -46,7 +53,10 @@ function Order() {
               className="mx-auto max-w-5xl mb-3 justify-between px-auto md:space-x-0 xl:px-0"
             >
               {order.cartItems.map((item) => (
-                <div key={item.id} className="rounded-lg md:w-4/4 flex">
+                <div
+                  key={item.id}
+                  className="rounded-lg md:w-4/4 flex bg-red-50"
+                >
                   <div
                     className={`justify-between mb-6 mx-2 rounded-lg p-6 shadow-md sm:flex sm:justify-start ${
                       mode === "dark"
@@ -55,12 +65,19 @@ function Order() {
                     }`}
                   >
                     <img
+                      onClick={() => navigatee("/productinfo/" + item.id)}
                       src={item.imageUrl}
                       alt="product-image"
                       className="w-full h-auto rounded-lg sm:w-20"
                     />
                     <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">
-                      <div className="mt-0 sm:mt-0">
+                      <div
+                        className="mt-0 sm:mt-0"
+                        style={{
+                          maxWidth: "",
+                          minWidth: "200px",
+                        }}
+                      >
                         <h2
                           className={`text-lg font-bold ${
                             mode === "dark" ? "text-white" : "text-gray-900"
@@ -96,27 +113,25 @@ function Order() {
                         </p>
                       </div>
                     </div>
-                    <FaLink size={30} className="m-auto" />
+                    <FaLink size={30} className="m-5" />
                     <div
                       style={{
-                        minWidth: "20px",
+                        minWidth: "190px",
                         maxWidth: "auto",
                         borderRadius: "20px",
-                        marginLeft: "10px",
+                        marginLeft: "-20px",
                       }}
                     >
-                      <p>
-                        Customer Name: {order.addressInfo.name.toUpperCase()}
-                      </p>
+                      <h1>Order Details:</h1>
+                      <p>Name: {order.addressInfo.name.toUpperCase()}</p>
                       <p>Contact: {order.addressInfo.phoneNumber}</p>
-                      <div className="flex justify-end mt-2">
-                        <button onClick={() => deleteOrder(order.paymentId)}>
-                          <MdDeleteOutline size={30} />
-                        </button>
+                      <p>Quantity: {item.quantity} Nos.</p>
+                      <p>Order Value : ₹ {item.quantity * item.price} /-</p>
+                      <div className="flex justify-start mt-2">
                         <button
                           onClick={() => handleDeleteOrder(order.paymentId)}
                         >
-                          Delete Order
+                          <MdDeleteOutline size={30} />
                         </button>
                       </div>
                     </div>
