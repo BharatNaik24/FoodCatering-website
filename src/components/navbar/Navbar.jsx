@@ -149,7 +149,7 @@ export default function Navbar() {
                   )}
                 </div>
                 <div className="border-t border-gray-200 px-4 py-6">
-                  <a href="#" className="-m-2 flex items-center">
+                  {/* <a href="#" className="-m-2 flex items-center">
                     <img
                       src="https://ecommerce-sk.vercel.app/img/indiaflag.png"
                       alt=""
@@ -162,7 +162,7 @@ export default function Navbar() {
                       INDIA
                     </span>
                     <span className="sr-only">, change currency</span>
-                  </a>
+                  </a> */}
                 </div>
                 <div className="border-t border-gray-200 px-4 py-6">
                   {!user ? (
@@ -259,7 +259,7 @@ export default function Navbar() {
                   )}
                 </div>
 
-                <div className="hidden lg:ml-8 lg:flex">
+                {/* <div className="hidden lg:ml-8 lg:flex">
                   <a href="#" className="flex items-center">
                     <img
                       src="https://ecommerce-sk.vercel.app/img/indiaflag.png"
@@ -273,7 +273,7 @@ export default function Navbar() {
                       INDIA
                     </span>
                   </a>
-                </div>
+                </div> */}
 
                 {user && (
                   <div className="hidden lg:ml-8 lg:flex">
