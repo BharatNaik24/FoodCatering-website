@@ -73,8 +73,9 @@ function Allproducts() {
                   <div
                     key={item.id}
                     className="p-4 drop-shadow-lg"
-                    onClick={() => {
+                    onClick={(e) => {
                       if (currentUser) {
+                        e.stopPropagation();
                         navigate(`/productinfo/${item.id}`);
                       } else {
                         handleLoginRedirect();
@@ -107,11 +108,12 @@ function Allproducts() {
                         <p className="leading-relaxed mb-1">₹ {item.price}</p>
                         <div className="flex justify-center mt-2 mb-0 pb-0">
                           <button
-                            onClick={() => {
+                            onClick={(e) => {
+                              e.stopPropagation();
                               if (currentUser) {
                                 addCart(item);
                               } else {
-                                navigater("/login"); // Redirect to the login page
+                                navigater("/login");
                               }
                             }}
                             type="button"

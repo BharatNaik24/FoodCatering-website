@@ -57,9 +57,9 @@ const MyState = (props) => {
     try {
       await addDoc(productRef, newProduct);
       toast.success("Product Added Successfully");
-      // Fetch products after adding a new one
+
       getProductsData();
-      // Reset form
+
       setNewProduct({
         title: "",
         price: "",

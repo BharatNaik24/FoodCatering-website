@@ -8,6 +8,7 @@ import { clearCart, deleteFromCart } from "../../redux/cartSlice";
 import { toast } from "react-toastify";
 import { addDoc, collection } from "firebase/firestore";
 import { fireDB } from "../../firebase/FirebaseConfig";
+import { FaMinus, FaPlus } from "react-icons/fa6";
 
 function Cart() {
   const context = useContext(myContext);
@@ -116,6 +117,20 @@ function Cart() {
     console.log(pay);
   };
 
+  const [itemsValue, setItem] = useState(1);
+
+  const onClickIncrement = () => {
+    setItem(itemsValue + 1);
+  };
+
+  const onClickDecrement = () => {
+    if (itemsValue > 1) {
+      setItem(itemsValue - 1);
+    } else {
+      setItem(1);
+    }
+  };
+
   return (
     <Layout>
       <div
@@ -162,6 +177,15 @@ function Cart() {
                       <p className="mt-1 text-xs font-semibold">
                         ₹{item.price}
                       </p>
+                      <div className="flex">
+                        <button onClick={onClickDecrement}>
+                          <FaMinus />
+                        </button>
+                        <p>{itemsValue}</p>
+                        <button onClick={onClickIncrement}>
+                          <FaPlus />
+                        </button>
+                      </div>
                     </div>
                     <div className="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
                       <button
@@ -186,7 +210,7 @@ function Cart() {
           >
             <div className="mb-2 flex justify-between">
               <p>Subtotal</p>
-              <p>₹{totalAmount}</p>
+              <p>₹{totalAmount * itemsValue}</p>
             </div>
             <div className="flex justify-between">
               <p>Shipping</p>

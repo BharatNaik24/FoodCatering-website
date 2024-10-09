@@ -8,7 +8,7 @@ import { SiInstagram } from "react-icons/si";
 
 export default function Footer() {
   const context = useContext(myContext);
-  const { toggleMode, mode } = context;
+  const { mode } = context;
   return (
     <footer
       className="text-gray-600 body-font bg-gray-300"
