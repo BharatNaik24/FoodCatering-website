@@ -15,6 +15,7 @@ function DashboardTab() {
   const { mode, products, deleteProduct, editEventHandle, orders, user } =
     context;
 
+  const navigateee = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const handleModal = (action) => setIsOpen(action === "open");
@@ -115,7 +116,7 @@ function DashboardTab() {
                     {products.map((eachProduct, index) => {
                       return (
                         <div
-                          key={index}
+                          key={eachProduct.id}
                           style={{
                             backgroundColor:
                               mode === "dark" ? "#374151" : "white",
@@ -131,6 +132,9 @@ function DashboardTab() {
                               }}
                             >
                               <img
+                                onClick={() =>
+                                  navigateee(`/productinfo/${eachProduct.id}`)
+                                }
                                 className=""
                                 style={{
                                   width: "100px",

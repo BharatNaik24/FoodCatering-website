@@ -105,6 +105,8 @@ const MyState = (props) => {
   // Fetch products on mount
   useEffect(() => {
     getProductsData();
+    getOrderData();
+    getUserData();
   }, []);
 
   // Apply background based on the mode
@@ -209,10 +211,7 @@ const MyState = (props) => {
     }
   };
 
-  useEffect(() => {
-    getOrderData();
-    getUserData();
-  }, []);
+  useEffect(() => {}, []);
 
   const [searchkey, setSearchkey] = useState("");
   const [filterType, setFilterType] = useState("");
